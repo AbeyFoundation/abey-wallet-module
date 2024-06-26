@@ -27,6 +27,7 @@ class Constant {
 
   static const String ZConfigModel = "ZConfigModel";
   static const String ZAddressBook = "ZAddressBook";
+  static const String ZALPHABET = "0123456789abcdef";
 
 
   static const String CURRENT_WID = "CURRENT_WID";
