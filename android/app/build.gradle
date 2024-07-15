@@ -26,6 +26,7 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.firebase.crashlytics'
 
 def keystorePropertiesFile = rootProject.file("key.properties")
 def keystoreProperties = new Properties()
@@ -47,8 +48,14 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
+
+
     defaultConfig {
-        applicationId "com.abey_test"
+        //Pro
+        applicationId "com.abey"
+        //Dev
+//        applicationId "com.abey_test"
+
 
         minSdkVersion 23
         targetSdkVersion 33
@@ -61,7 +68,11 @@ android {
             abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
         }
 
-        manifestPlaceholders = []
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : applicationId,
+                JPUSH_APPKEY : "80c12e8095f93cd49edb152a",
+                JPUSH_CHANNEL : "google",
+        ]
     }
 
     signingConfigs {
@@ -75,7 +86,10 @@ android {
         }
 
         debug {
-
+//            keyAlias keystoreProperties['keyAlias']
+//            keyPassword keystoreProperties['keyPassword']
+//            storeFile file(keystoreProperties['storeFile'])
+//            storePassword keystoreProperties['storePassword']
         }
     }
 
@@ -90,10 +104,15 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.release
+
+//            minifyEnabled true
+//            useProguard true
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         debug {
-
+//            minifyEnabled false
+//            useProguard false
         }
     }
 
@@ -122,4 +141,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:multidex:1.0.3'
     implementation platform('com.google.firebase:firebase-bom:28.4.2')
+
+//    implementation 'com.google.firebase:firebase-core:16.0.1'
+//    implementation 'com.google.firebase:firebase-messaging:20.2.4'
+//    implementation 'androidx.work:work-runtime-ktx:2.7.0'
 }
