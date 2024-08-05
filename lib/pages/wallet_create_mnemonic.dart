@@ -8,6 +8,7 @@ import 'package:abey_wallet/model/identity_model.dart';
 import 'package:abey_wallet/pages/home.dart';
 import 'package:abey_wallet/resources/Strings.dart';
 import 'package:abey_wallet/utils/alert_util.dart';
+import 'package:abey_wallet/utils/chain_evm_util.dart';
 import 'package:abey_wallet/utils/chain_util.dart';
 import 'package:abey_wallet/utils/common_util.dart';
 import 'package:abey_wallet/utils/console_util.dart';
@@ -89,8 +90,10 @@ class WalletCreateMnemonicPageState extends State<WalletCreateMnemonicPage> {
   }
 
   _generateMnemonic() async {
-    var chain = new AccountChain(chain: "ETH");
-    String mnemonicStr = await chain.getMnemonic();
+    // var chain = new AccountChain(chain: "ETH");
+    // String mnemonicStr = await chain.getMnemonic();
+
+    String mnemonicStr = await ChainEvmUtil.getMnemonic();
     String randomId = CommonUtil.generateId();
 
     AlertUtil.showLoadingDialog(context,show: false);

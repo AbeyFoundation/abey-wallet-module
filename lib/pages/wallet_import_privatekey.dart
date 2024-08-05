@@ -7,6 +7,7 @@ import 'package:abey_wallet/pages/home.dart';
 import 'package:abey_wallet/pages/wallet_chain.dart';
 import 'package:abey_wallet/resources/Strings.dart';
 import 'package:abey_wallet/utils/alert_util.dart';
+import 'package:abey_wallet/utils/chain_evm_util.dart';
 import 'package:abey_wallet/utils/chain_util.dart';
 import 'package:abey_wallet/utils/common_util.dart';
 import 'package:abey_wallet/utils/database_util.dart';
@@ -132,9 +133,10 @@ class WalletImportPrivatekeyPageState extends State<WalletImportPrivatekeyPage> 
 
     AlertUtil.showLoadingDialog(context,show: true);
 
-    var chain = new AccountChain(chain: "ETH");
+    // var chain = new AccountChain(chain: "ETH");
     try {
-      String address = await chain.getAddress(privateKey: privatekey);
+      // String address = await chain.getAddress(privateKey: privatekey);
+      String address = await ChainEvmUtil.getAddress(privatekey);
       if (address.isNotEmptyString()) {
         String wid = CommonUtil.generateId();
         IdentityModel identityModel = new IdentityModel(wid: wid,name: _nameEC.text, scope: "all", type: 1, tokenType: "private");

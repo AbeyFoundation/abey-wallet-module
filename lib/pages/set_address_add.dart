@@ -7,6 +7,7 @@ import 'package:abey_wallet/event/event.dart';
 import 'package:abey_wallet/resources/Strings.dart';
 import 'package:abey_wallet/service/api_data.dart';
 import 'package:abey_wallet/utils/alert_util.dart';
+import 'package:abey_wallet/utils/chain_evm_util.dart';
 import 'package:abey_wallet/utils/chain_util.dart';
 import 'package:abey_wallet/utils/preferences_util.dart';
 import 'package:abey_wallet/utils/size_util.dart';
@@ -67,7 +68,8 @@ class SetAddressAddPageState extends State<SetAddressAddPage> {
       AlertUtil.showWarnBar(ID.MineAddressTipTwo.tr);
       return;
     } else {
-      String isAddress = await ChainUtil.vertityAddress(context, "ETH", _addressEC.text.trim().toLowerCase());
+      // String isAddress = await ChainUtil.vertityAddress(context, "ETH", _addressEC.text.trim().toLowerCase());
+      String isAddress = await ChainEvmUtil.verityAddress(_addressEC.text.trim().toLowerCase()).toString();
       if (isAddress == "false") {
         AlertUtil.showWarnBar(ID.MineAddressTipTwo.tr);
         return;

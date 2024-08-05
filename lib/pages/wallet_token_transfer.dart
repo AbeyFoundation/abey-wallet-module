@@ -12,6 +12,7 @@ import 'package:abey_wallet/resources/Strings.dart';
 import 'package:abey_wallet/service/api_data.dart';
 import 'package:abey_wallet/service/api_manager.dart';
 import 'package:abey_wallet/utils/alert_util.dart';
+import 'package:abey_wallet/utils/chain_evm_util.dart';
 import 'package:abey_wallet/utils/chain_util.dart';
 import 'package:abey_wallet/utils/common_util.dart';
 import 'package:abey_wallet/utils/console_util.dart';
@@ -299,7 +300,8 @@ class WalletTokenTransferPageState extends State<WalletTokenTransferPage> {
           return Future.value(false);
         }
       } else {
-        String isAddress = await ChainUtil.vertityAddress(context, "ETH", _addressEC.text.toLowerCase());
+        // String isAddress = await ChainUtil.vertityAddress(context, "ETH", _addressEC.text.toLowerCase());
+        String isAddress = await ChainEvmUtil.verityAddress(_addressEC.text.toLowerCase()).toString();
         if (isAddress == "false") {
           AlertUtil.showWarnBar(ID.WalletInputReceiveAddress.tr);
           return Future.value(false);

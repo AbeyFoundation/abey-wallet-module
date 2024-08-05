@@ -5,6 +5,7 @@ import 'package:abey_wallet/resources/Strings.dart';
 import 'package:abey_wallet/service/api_data.dart';
 import 'package:abey_wallet/service/api_manager.dart';
 import 'package:abey_wallet/utils/alert_util.dart';
+import 'package:abey_wallet/utils/chain_evm_util.dart';
 import 'package:abey_wallet/utils/common_util.dart';
 import 'package:abey_wallet/utils/database_util.dart';
 import 'package:abey_wallet/utils/password_util.dart';
@@ -84,7 +85,8 @@ class ChainUtil {
     String privateKeyI = "";
     String privateKeyITrx = "";
     if (identityModel.tokenType == "mnemonic") {
-      String privateS = await ChainUtil.getPrivateKeyFromMnemonicEth(context, "ETH", mnemonic!);
+      // String privateS = await ChainUtil.getPrivateKeyFromMnemonicEth(context, "ETH", mnemonic!);
+      String privateS = await ChainEvmUtil.getPrivateKey(mnemonic!);
       String keystoreS = await ChainUtil.getKeystoreFromPrivateKeyEth(context, "ETH", privateS, keystorePwd!);
       tokenI = await CommonUtil.encrypt(mnemonic, password);
       mnemonicI = tokenI;
@@ -176,7 +178,8 @@ class ChainUtil {
         } else {
           String privateKey = await CommonUtil.decrypt(identityModel.privateKey!, pass);
           AccountChain chain = getChain("ETH")!;
-          String address = await chain.getAddress(privateKey: privateKey);
+          // String address = await chain.getAddress(privateKey: privateKey);
+          String address = await ChainEvmUtil.getAddress(privateKey);
 
           coin.wid = identityModel.wid;
           coin.tokenType = identityModel.tokenType;
@@ -214,8 +217,9 @@ class ChainUtil {
           descAddresses.add(coin.symbol!.toDescAddress(address));
         } else {
           String privateKey = await CommonUtil.decrypt(identityModel.privateKey!, pass);
-          AccountChain chain = getChain("ETH")!;
-          String address = await chain.getAddress(privateKey: privateKey);
+          // AccountChain chain = getChain("ETH")!;
+          // String address = await chain.getAddress(privateKey: privateKey);
+          String address = await ChainEvmUtil.getAddress(privateKey);
 
           coin.wid = identityModel.wid;
           coin.tokenType = identityModel.tokenType;
@@ -253,8 +257,9 @@ class ChainUtil {
           descAddresses.add(coin.symbol!.toDescAddress(address));
         } else {
           String privateKey = await CommonUtil.decrypt(identityModel.privateKey!, pass);
-          AccountChain chain = getChain("ETH")!;
-          String address = await chain.getAddress(privateKey: privateKey);
+          // AccountChain chain = getChain("ETH")!;
+          // String address = await chain.getAddress(privateKey: privateKey);
+          String address = await ChainEvmUtil.getAddress(privateKey);
 
           coin.wid = identityModel.wid;
           coin.tokenType = identityModel.tokenType;
