@@ -4,6 +4,7 @@ import 'package:abey_wallet/converters/base58.dart';
 import 'package:abey_wallet/utils/bytes_util.dart';
 import 'package:abey_wallet/utils/int_util.dart';
 import 'package:abey_wallet/utils/tuple.dart';
+import 'package:abey_wallet/vender/crypto/quick_crypto.dart';
 
 class Ss58Const {
   static const int simpleAccountFormatMaxVal = 63;
